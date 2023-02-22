@@ -1,0 +1,37 @@
+buildscript {
+    ext { //ext는 전역변수 설정하는 키워드
+        springBootVersion = '2.1.7.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'org.springframework.boot' version '3.0.2'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories { //의존성(라이브러리)를 어떤 원격 저장소에 받을지 결정
+    mavenCentral() // 예전부터 많이 사용되지만 라이브러리 업로드 힘듦
+    jcenter() // 라이브러리 업로드 간단하게 나온 무언가 - 여기에 업로드하면 위에껏도 자동화 되어있음
+}
+
+dependencies { // 의존성들을 선언하는
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
